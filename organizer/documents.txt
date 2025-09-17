@@ -1,0 +1,11 @@
+*.txt 
+*.pdf 
+*.doc
+*.docx
+*.xls
+*.xlsx
+*.ppt
+*.pptx
+*.odt
+*.rtf
+
