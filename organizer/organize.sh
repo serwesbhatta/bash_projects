@@ -10,13 +10,29 @@ mkdir -p ~/Documents/Downloaded_Documents
 mkdir -p ~/Archives
 mkdir -p ~/Music/Downloaded_Music
 
+files=$(ls extensions)
+
+type=""
+
+found_file=0
+
 fswatch -0 ~/Downloads | while read -d "" FILE
 do
-	if [[ ($FILE == *.txt || $FILE == ) && $TEMP_FILE == "" ]]; then
-		$( mv $FILE ~/Documents/Downloaded_Documents)
-		TEMP_FILE=$FILE
-	elif [[ $FILLE == *
-	elif [[ $TEMP_FILE == $FILE ]]; then
-		TEMP_FILE=""
-	fi
+	for file in $files;
+	do
+		type=$file
+		for ext in $(cat extensions/$file);
+		do
+			if [[ $FILE == $ext ]]; then
+				echo "File name matches with the ext in $type"
+				found_file=1
+				break
+			fi
+		done
+		if [[ $found_file == 1 ]]; then
+			break
+		fi
+	done
+	found_file=0
+	type=""
 done
